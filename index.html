@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danil Nikolaev — Videographer / Editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b;
+    --bg-alt:#131315;
+    --text:#ecebe6;
+    --text-dim:#8d8c88;
+    --accent:#e3402f;
+    --accent-dim:rgba(227,64,47,.14);
+    --line:#28282a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent);color:#fff;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  .display{font-family:'Oswald',sans-serif;text-transform:uppercase;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;
+    background:linear-gradient(to bottom, rgba(10,10,11,.9), transparent);
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .rec-dot{
+    width:8px;height:8px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 0 var(--accent-dim);
+    animation:pulse 1.6s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(227,64,47,.5);}
+    70%{box-shadow:0 0 0 8px rgba(227,64,47,0);}
+    100%{box-shadow:0 0 0 0 rgba(227,64,47,0);}
+  }
+  .brand-name{font-family:'Oswald',sans-serif;font-size:15px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;}
+  nav.links{display:flex;gap:28px;font-size:13px;letter-spacing:.04em;color:var(--text-dim);}
+  nav.links a:hover{color:var(--text);}
+  @media(max-width:720px){nav.links{display:none;}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;flex-direction:column;justify-content:center;
+    position:relative;
+    padding:120px 32px 60px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-eyebrow{
+    display:flex;align-items:center;gap:10px;
+    color:var(--text-dim);font-size:12px;letter-spacing:.12em;margin-bottom:26px;
+  }
+  .hero-eyebrow .rec-dot{width:7px;height:7px;}
+  #tc{color:var(--accent);}
+  h1.hero-title{
+    font-family:'Oswald',sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    font-size:clamp(48px,11vw,132px);
+    line-height:.92;
+    letter-spacing:-.01em;
+  }
+  .hero-role{
+    margin-top:22px;
+    font-size:clamp(16px,2.4vw,22px);
+    color:var(--text-dim);
+    max-width:560px;
+    line-height:1.5;
+  }
+  .hero-role strong{color:var(--text);font-weight:500;}
+  .hero-bottom{
+    margin-top:60px;display:flex;align-items:center;justify-content:space-between;
+    flex-wrap:wrap;gap:20px;
+  }
+  .scroll-cue{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.1em;color:var(--text-dim);}
+  .scroll-cue .arrow{animation:bob 1.8s infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
+  .hero-loc{font-size:12px;letter-spacing:.08em;color:var(--text-dim);}
+
+  /* marquee */
+  .marquee{
+    border-top:1px solid var(--line);
+    overflow:hidden;white-space:nowrap;padding:14px 0;
+  }
+  .marquee-track{display:inline-block;padding-left:100%;animation:scroll 26s linear infinite;}
+  .marquee span{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:13px;letter-spacing:.15em;color:var(--text-dim);}
+  .marquee span::after{content:"—";margin:0 18px;color:var(--accent);}
+  @keyframes scroll{0%{transform:translateX(0);}100%{transform:translateX(-100%);}}
+  @media(prefers-reduced-motion:reduce){
+    .marquee-track{animation:none;padding-left:0;}
+    .rec-dot{animation:none;}
+    .scroll-cue .arrow{animation:none;}
+  }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section{padding:110px 0;border-bottom:1px solid var(--line);}
+  .section-head{
+    display:flex;align-items:baseline;gap:16px;margin-bottom:54px;
+    flex-wrap:wrap;
+  }
+  .section-num{font-family:'IBM Plex Mono',monospace;color:var(--accent);font-size:13px;}
+  .section-title{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:clamp(28px,4vw,44px);font-weight:600;}
+  .section-sub{color:var(--text-dim);font-size:14px;margin-left:auto;max-width:340px;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:60px;}
+  @media(max-width:800px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{font-size:18px;line-height:1.7;color:#cfcecb;margin-bottom:18px;max-width:560px;}
+  .about-stats{display:flex;flex-direction:column;gap:26px;border-left:1px solid var(--line);padding-left:28px;}
+  .stat-num{font-family:'Oswald',sans-serif;font-size:34px;color:var(--accent);}
+  .stat-label{font-size:12px;color:var(--text-dim);letter-spacing:.06em;text-transform:uppercase;margin-top:2px;}
+
+  /* ---------- REELS / PORTFOLIO ---------- */
+  .reel-strip{display:flex;gap:22px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x proximity;}
+  .reel-strip::-webkit-scrollbar{height:5px;}
+  .reel-strip::-webkit-scrollbar-thumb{background:var(--line);}
+  .reel-card{
+    flex:0 0 380px;scroll-snap-align:start;
+    background:var(--bg-alt);border:1px solid var(--line);
+  }
+  .reel-frame{aspect-ratio:16/9;background:#000;position:relative;}
+  .reel-frame iframe{width:100%;height:100%;border:0;display:block;}
+  .reel-meta{padding:18px 20px 22px;}
+  .reel-id{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.06em;}
+  .reel-title{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:18px;margin:8px 0 4px;letter-spacing:.01em;}
+  .reel-tag{font-size:12px;color:var(--text-dim);}
+
+  /* ---------- SERVICES ---------- */
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  @media(max-width:800px){.services{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.services{grid-template-columns:1fr;}}
+  .service{background:var(--bg);padding:34px 26px;transition:background .2s;}
+  .service:hover{background:var(--bg-alt);}
+  .service-tc{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-dim);margin-bottom:20px;}
+  .service-title{font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:19px;margin-bottom:10px;}
+  .service-desc{font-size:14px;color:var(--text-dim);line-height:1.6;}
+
+  /* ---------- CLIENTS ---------- */
+  .clients-row{display:flex;flex-wrap:wrap;gap:14px;}
+  .client-chip{
+    border:1px solid var(--line);padding:12px 20px;font-size:14px;
+    color:var(--text-dim);font-family:'IBM Plex Mono',monospace;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-section{padding:110px 0 90px;}
+  .contact-title{
+    font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:700;
+    font-size:clamp(34px,7vw,72px);line-height:1.05;margin-bottom:40px;
+  }
+  .contact-title span{color:var(--accent);}
+  .contact-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);max-width:640px;}
+  .contact-row{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 0;border-bottom:1px solid var(--line);
+  }
+  .contact-label{font-size:12px;color:var(--text-dim);letter-spacing:.08em;text-transform:uppercase;}
+  .contact-value{font-family:'IBM Plex Mono',monospace;font-size:18px;}
+  .contact-row a.contact-value:hover{color:var(--accent);}
+
+  footer{padding:34px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;color:var(--text-dim);font-size:12px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="rec-dot"></span>
+    <span class="brand-name">Danil Nikolaev</span>
+  </div>
+  <nav class="links">
+    <a href="#reels">Работы</a>
+    <a href="#services">Услуги</a>
+    <a href="#clients">Клиенты</a>
+    <a href="#contact">Контакты</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-eyebrow mono">
+    <span class="rec-dot"></span> REC <span id="tc">00:00:00:00</span>
+  </div>
+  <h1 class="hero-title">Danil<br>Nikolaev</h1>
+  <p class="hero-role">Видеооператор и монтажёр из Казани. <strong>Снимаю и монтирую</strong> документальные фильмы, рекламные и корпоративные видео, контент для соцсетей.</p>
+  <div class="hero-bottom">
+    <div class="scroll-cue"><span class="arrow">↓</span> смотреть работы</div>
+    <div class="hero-loc mono">KAZAN, RU</div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>СЪЁМКА</span><span>МОНТАЖ</span><span>ЦВЕТОКОРРЕКЦИЯ</span><span>ДОКУМЕНТАЛИСТИКА</span><span>РЕКЛАМНЫЕ РОЛИКИ</span><span>REELS / SHORTS</span><span>СЪЁМКА</span><span>МОНТАЖ</span><span>ЦВЕТОКОРРЕКЦИЯ</span><span>ДОКУМЕНТАЛИСТИКА</span><span>РЕКЛАМНЫЕ РОЛИКИ</span><span>REELS / SHORTS</span>
+  </div>
+</div>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num mono">01</span>
+      <h2 class="section-title">О себе</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Работаю с видео на всех этапах — от постановки кадра на площадке до финального цветокора и сведения звука. За плечами документальные проекты, рекламные и корпоративные ролики для крупных заказчиков, короткометражные фильмы и контент для соцсетей.</p>
+        <p>Ценю кадр, который держит внимание, и монтаж, который не мешает истории. Работаю быстро, держу связь на каждом этапе и сдаю в срок.</p>
+      </div>
+      <div class="about-stats">
+        <div>
+          <div class="stat-num mono">50+</div>
+          <div class="stat-label">Реализованных проектов</div>
+        </div>
+        <div>
+          <div class="stat-num mono">6</div>
+          <div class="stat-label">Направлений съёмки</div>
+        </div>
+        <div>
+          <div class="stat-num mono">Kazan</div>
+          <div class="stat-label">База, работа по РФ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="reels">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num mono">02</span>
+      <h2 class="section-title">Избранные работы</h2>
+      <span class="section-sub">Каждая карточка — отдельный ролик. Листайте вбок или смотрите прямо здесь.</span>
+    </div>
+    <div class="reel-strip">
+
+      <div class="reel-card">
+        <div class="reel-frame"><iframe src="https://www-ccv.adobe.io/v1/player/ccv/3kq7xqyofIz/embed?bgcolor=%23191919&amp;lazyLoading=true&amp;api_key=BehancePro2View" allow="fullscreen" loading="lazy"></iframe></div>
+        <div class="reel-meta">
+          <div class="reel-id mono">REEL A001</div>
+          <div class="reel-title">Промо-ролик</div>
+          <div class="reel-tag">Рекламное видео</div>
+        </div>
+      </div>
+
+      <div class="reel-card">
+        <div class="reel-frame"><iframe src="https://www-ccv.adobe.io/v1/player/ccv/D_pQ6CgD4P5/embed?bgcolor=%23191919&amp;lazyLoading=true&amp;api_key=BehancePro2View" allow="fullscreen" loading="lazy"></iframe></div>
+        <div class="reel-meta">
+          <div class="reel-id mono">REEL A002</div>
+          <div class="reel-title">Транснефть Прикамье</div>
+          <div class="reel-tag">Корпоративное видео — прокладка нефтепровода</div>
+        </div>
+      </div>
+
+      <div class="reel-card">
+        <div class="reel-frame"><iframe src="https://www-ccv.adobe.io/v1/player/ccv/6kUxHq2Kxcu/embed?bgcolor=%23191919&amp;lazyLoading=true&amp;api_key=BehancePro2View" allow="fullscreen" loading="lazy"></iframe></div>
+        <div class="reel-meta">
+          <div class="reel-id mono">REEL A003</div>
+          <div class="reel-title">НЛМК</div>
+          <div class="reel-tag">Корпоративное видео — вводный инструктаж</div>
+        </div>
+      </div>
+
+      <div class="reel-card">
+        <div class="reel-frame"><iframe src="https://www-ccv.adobe.io/v1/player/ccv/RbcjW78QWSW/embed?bgcolor=%23191919&amp;lazyLoading=true&amp;api_key=BehancePro2View" allow="fullscreen" loading="lazy"></iframe></div>
+        <div class="reel-meta">
+          <div class="reel-id mono">REEL A004</div>
+          <div class="reel-title">«Мой учитель»</div>
+          <div class="reel-tag">Короткометражный фильм</div>
+        </div>
+      </div>
+
+      <div class="reel-card">
+        <div class="reel-frame"><iframe src="https://www-ccv.adobe.io/v1/player/ccv/TmhCP5FERhp/embed?bgcolor=%23191919&amp;lazyLoading=true&amp;api_key=BehancePro2View" allow="fullscreen" loading="lazy"></iframe></div>
+        <div class="reel-meta">
+          <div class="reel-id mono">REEL A005</div>
+          <div class="reel-title">«Квартира 155»</div>
+          <div class="reel-tag">Короткометражный фильм</div>
+        </div>
+      </div>
+
+      <div class="reel-card">
+        <div class="reel-frame"><iframe src="https://player.vimeo.com/video/726384199?title=0&amp;byline=0&amp;portrait=0" allow="fullscreen" loading="lazy"></iframe></div>
+        <div class="reel-meta">
+          <div class="reel-id mono">REEL A006</div>
+          <div class="reel-title">Видеопроект</div>
+          <div class="reel-tag">Съёмка и монтаж</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num mono">03</span>
+      <h2 class="section-title">Услуги</h2>
+    </div>
+    <div class="services">
+      <div class="service">
+        <div class="service-tc mono">00:00:01</div>
+        <div class="service-title">Видеосъёмка</div>
+        <div class="service-desc">Работа на площадке — интервью, ивенты, продакшн для документальных и рекламных проектов.</div>
+      </div>
+      <div class="service">
+        <div class="service-tc mono">00:00:02</div>
+        <div class="service-title">Монтаж</div>
+        <div class="service-desc">Сборка истории из отснятого материала — от чернового монтажа до финальной версии.</div>
+      </div>
+      <div class="service">
+        <div class="service-tc mono">00:00:03</div>
+        <div class="service-title">Цветокоррекция</div>
+        <div class="service-desc">Цветокоррекция и цветокор для кино- и рекламного изображения.</div>
+      </div>
+      <div class="service">
+        <div class="service-tc mono">00:00:04</div>
+        <div class="service-title">Документалистика</div>
+        <div class="service-desc">Полнометражные и короткие документальные проекты — от идеи до финального монтажа.</div>
+      </div>
+      <div class="service">
+        <div class="service-tc mono">00:00:05</div>
+        <div class="service-title">Корпоративное видео</div>
+        <div class="service-desc">Имиджевые и промо-ролики для бизнеса, инструктажи, видео для брендов.</div>
+      </div>
+      <div class="service">
+        <div class="service-tc mono">00:00:06</div>
+        <div class="service-title">Контент для соцсетей</div>
+        <div class="service-desc">Reels, YouTube-ролики, обложки — короткий формат под соцсети.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="clients">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num mono">04</span>
+      <h2 class="section-title">С кем работал</h2>
+    </div>
+    <div class="clients-row">
+      <div class="client-chip">МОСЭНЕРГО</div>
+      <div class="client-chip">AMG RANGE</div>
+      <div class="client-chip">ТРАНСНЕФТЬ ПРИКАМЬЕ</div>
+      <div class="client-chip">НЛМК</div>
+      <div class="client-chip">PAPA JOHN'S</div>
+      <div class="client-chip">РОСМОЛОДЁЖЬ</div>
+      <div class="client-chip">АКБАЙТАЛ</div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="wrap">
+    <div class="contact-title">Есть проект?<br>Давайте <span>снимем это.</span></div>
+    <div class="contact-list">
+      <div class="contact-row">
+        <span class="contact-label">Телефон</span>
+        <a class="contact-value" href="tel:+7XXXXXXXXXX">+7 (___) ___-__-__</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Почта</span>
+        <a class="contact-value" href="mailto:mail@example.com">mail@example.com</a>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Telegram</span>
+        <a class="contact-value" href="https://t.me/username" target="_blank" rel="noopener">@username</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>© <span id="year"></span> Danil Nikolaev</span>
+  <span class="mono">KAZAN, RUSSIA</span>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // running timecode HH:MM:SS:FF (25fps look)
+  const tc = document.getElementById('tc');
+  let frame = 0;
+  function pad(n){return n.toString().padStart(2,'0');}
+  function tick(){
+    frame++;
+    if(frame>=25){frame=0;}
+    const total = Math.floor(performance.now()/1000);
+    const h = Math.floor(total/3600)%24;
+    const m = Math.floor(total/60)%60;
+    const s = total%60;
+    tc.textContent = pad(h)+':'+pad(m)+':'+pad(s)+':'+pad(frame);
+  }
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduceMotion){ setInterval(tick, 40); } else { tc.textContent = '00:00:00:00'; }
+</script>
+
+</body>
+</html>
